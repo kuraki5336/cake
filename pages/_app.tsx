@@ -5,6 +5,9 @@ import BaseLayout from "../components/BaseLayout";
 import Layout from "../components/Layout";
 import { store } from "../core/store/index";
 
+/** 全局得的CSS */
+import "../styles.css";
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
