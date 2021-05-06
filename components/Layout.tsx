@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import Container from "@material-ui/core/Container";
+import Cbreadcrumbs from "./breadcrumb";
 
 type Props = {
   children?: ReactNode | Element | Element[];
@@ -37,7 +38,10 @@ const Layout = ({ children, title = "This is the default title" }: Props) => (
     </header>
 
     <Container maxWidth="lg">
-      <>{children}</>
+      <>
+        <Cbreadcrumbs></Cbreadcrumbs>
+        {children}
+      </>
     </Container>
 
     <footer>
