@@ -3,8 +3,18 @@ import Link from "next/link";
 import Head from "next/head";
 import Container from "@material-ui/core/Container";
 import Cbreadcrumbs from "./breadcrumb";
-import { AppBar, createStyles, makeStyles, Tab, Tabs } from "@material-ui/core";
+import {
+  AppBar,
+  Button,
+  createStyles,
+  Grid,
+  IconButton,
+  makeStyles,
+  Tab,
+  Tabs,
+} from "@material-ui/core";
 import { useRouter } from "next/router";
+import MenuIcon from "@material-ui/icons/Menu";
 
 type Props = {
   children?: ReactNode | Element | Element[];
@@ -16,7 +26,17 @@ const useStyles = makeStyles({
     height: "55px",
     backgroundColor: "#2697ed",
     boxShadow: "0 1px 13px rgb(0 ,0, 0 )",
+    paddingTop: "2px",
   },
+  white: {
+    color: "#FFFFFF",
+    border: "#FFFFFF 1px solid",
+  },
+  flex: {
+    display:"flex",
+    justifyContent: "flex-end",
+  },
+
 });
 
 const Layout = ({ children, title = "This is the default title" }: Props) => {
@@ -36,12 +56,14 @@ const Layout = ({ children, title = "This is the default title" }: Props) => {
         router.push("/color");
         break;
       case 3:
-        // history.push("/example");
+        router.push("/login");
         break;
       default:
         break;
     }
   };
+
+  const doLogin = () =>router.push("/login");
 
   return (
     <>
@@ -52,17 +74,21 @@ const Layout = ({ children, title = "This is the default title" }: Props) => {
       </Head>
       <header>
         <nav className={classes.nav}>
-          {/* <AppBar position="static">
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              aria-label="simple tabs example"
-            >
-              <Tab label="Home" />
-              <Tab label="List" />
-              <Tab label="Info" />
-            </Tabs>
-          </AppBar> */}
+          <Grid container spacing={3}>
+            <Grid item xs={8}>
+              <IconButton aria-label="delete" disabled color="primary">
+                <MenuIcon style={{ color: "#FFFFFF" }} />
+              </IconButton>
+            </Grid>
+            <Grid item xs={4} className={classes.flex}>
+              <Button  className={classes.white} variant="outlined">
+                qqqn
+              </Button>
+              <Button onClick={doLogin} className={classes.white} variant="outlined">
+                Login
+              </Button>
+            </Grid>
+          </Grid>
         </nav>
       </header>
 

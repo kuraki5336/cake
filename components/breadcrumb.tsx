@@ -62,6 +62,11 @@ const routeConfig: IRouterstructure = {
     data: "",
     url: "/color",
   },
+  login: {
+    name: "登入頁",
+    data: "",
+    url: "/login",
+  },
   test: {
     name: "測試階層1",
     data: "",
