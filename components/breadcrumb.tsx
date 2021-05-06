@@ -2,17 +2,7 @@ import React from "react";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
 import { useRouter } from "next/router";
-import { makeStyles } from "@material-ui/core";
-
-const useStyles = makeStyles({
-  acolor: {
-    color: "#CC44CC",
-  },
-
-  bcolor: {
-    color: "#555555",
-  },
-});
+import { createStyles, makeStyles } from "@material-ui/core";
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   // event.preventDefault();
@@ -30,6 +20,27 @@ interface IRouterstructure {
   [key: string]: IRouterConfig;
 }
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    breadcrumbs: {
+      display: "flex",
+      flexWrap: "wrap",
+      listStyle: "none",
+      margin: "0 auto",
+      padding: ".375rem 1rem",
+      lineHeight: "1.5rem",
+      color: "#adb5bd",
+    },
+    acolor: {
+      color: "#CC44CC",
+    },
+
+    bcolor: {
+      color: "#555555",
+    },
+  })
+);
+
 const routeConfig: IRouterstructure = {
   "": {
     name: "首頁",
@@ -45,6 +56,11 @@ const routeConfig: IRouterstructure = {
     name: "幫助中心",
     data: "",
     url: "/help",
+  },
+  color: {
+    name: "顏色測試",
+    data: "",
+    url: "/color",
   },
   test: {
     name: "測試階層1",
@@ -104,7 +120,12 @@ function Cbreadcrumbs() {
       );
     });
   }
-  return <Breadcrumbs aria-label="breadcrumb">{navlist}</Breadcrumbs>;
+
+  return (
+    <Breadcrumbs className={classes.breadcrumbs} aria-label="breadcrumb">
+      {navlist}
+    </Breadcrumbs>
+  );
 }
 
 export default Cbreadcrumbs;

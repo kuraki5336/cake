@@ -45,3 +45,4 @@ A `type-check` script is also added to `package.json`, which runs TypeScript's `
 redux-thunk - https://www.npmjs.com/package/redux-thunk
 redux-redux - https://react-redux.js.org/
 js-base64 - https://www.npmjs.com/package/@types/js-base64
+material - npm install @material-ui/styles

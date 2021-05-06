@@ -3,7 +3,7 @@ import Link from "next/link";
 import Head from "next/head";
 import Container from "@material-ui/core/Container";
 import Cbreadcrumbs from "./breadcrumb";
-import { AppBar, Tab, Tabs } from "@material-ui/core";
+import { AppBar, createStyles, makeStyles, Tab, Tabs } from "@material-ui/core";
 import { useRouter } from "next/router";
 
 type Props = {
@@ -11,7 +11,16 @@ type Props = {
   title?: string;
 };
 
+const useStyles = makeStyles({
+  nav: {
+    height: "55px",
+    backgroundColor: "#2697ed",
+    boxShadow: "0 1px 13px rgb(0 ,0, 0 )",
+  },
+});
+
 const Layout = ({ children, title = "This is the default title" }: Props) => {
+  const classes = useStyles();
   const [value, setValue] = React.useState(0);
   let router = useRouter();
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
@@ -24,7 +33,7 @@ const Layout = ({ children, title = "This is the default title" }: Props) => {
         router.push("/about");
         break;
       case 2:
-        // history.push("/intoplu");
+        router.push("/color");
         break;
       case 3:
         // history.push("/example");
@@ -42,8 +51,8 @@ const Layout = ({ children, title = "This is the default title" }: Props) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <header>
-        <nav>
-          <AppBar position="static">
+        <nav className={classes.nav}>
+          {/* <AppBar position="static">
             <Tabs
               value={value}
               onChange={handleChange}
@@ -53,7 +62,7 @@ const Layout = ({ children, title = "This is the default title" }: Props) => {
               <Tab label="List" />
               <Tab label="Info" />
             </Tabs>
-          </AppBar>
+          </AppBar> */}
         </nav>
       </header>
 
