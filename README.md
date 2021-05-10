@@ -46,3 +46,6 @@ redux-thunk - https://www.npmjs.com/package/redux-thunk
 redux-redux - https://react-redux.js.org/
 js-base64 - https://www.npmjs.com/package/@types/js-base64
 material - npm install @material-ui/styles
+formik[表單驗證器] - https://formik.org/docs/overview
+
+npm install @hookform/resolvers yup
