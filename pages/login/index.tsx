@@ -34,22 +34,19 @@ const Login = () => {
     mode: "all",
     reValidateMode: "onChange",
     resolver: yupResolver(schema),
-    // defaultValues: {
-    //   firstName: undefined,
-    //   lastName: undefined,
-    //   phone: undefined,
-    // },
+    defaultValues: {
+      firstName: undefined,
+      lastName: "",
+      phone: "",
+    },
   });
 
   const onSubmit = (data: IFormInputs) => {
     console.log(data);
   };
 
-  console.log(dirtyFields);
-
-  console.log("dirty", dirtyFields.firstName);
-  console.log("touch", touchedFields.firstName);
-  console.log(getValues("firstName"));
+  console.log(1, dirtyFields?.firstName);
+  console.log(2, getValues("firstName"));
 
   return (
     <>
@@ -58,15 +55,12 @@ const Login = () => {
           <label htmlFor="firstName">firstName</label>
           <input {...register("firstName")} />
           <p>
-            {!getValues("firstName") &&
-              touchedFields.firstName &&
-              dirtyFields.firstName &&
+            {!dirtyFields.firstName && getValues('firstName') &&
               errors.firstName?.type === "required" &&
               "First name is required"}
           </p>
           <p>
-            {dirtyFields.firstName &&
-              touchedFields.firstName &&
+            {touchedFields.firstName &&
               errors.firstName?.type === "length" &&
               "First name need length 5"}
           </p>
