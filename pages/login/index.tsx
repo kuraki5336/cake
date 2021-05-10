@@ -6,7 +6,10 @@ import * as yup from "yup";
 import { strAccountSchema } from "../../core/validation/index";
 
 const schema = yup.object().shape({
-  firstName: yup.string().concat(strAccountSchema({ title: "帳號" })),
+  firstName: yup
+    .string()
+    .required()
+    .concat(strAccountSchema({ title: "帳號" })),
   lastName: yup.string().required(),
   phone: yup
     .string()
@@ -18,27 +21,35 @@ const schema = yup.object().shape({
 interface IFormInputs {
   firstName: string;
   lastName: string;
-  phone: number;
+  phone: string;
 }
 /** 表單驗證 */
 const Login = () => {
   const {
     register,
+    getValues,
     formState: { errors, touchedFields, dirtyFields },
     handleSubmit,
   } = useForm<IFormInputs>({
-    mode: "onBlur",
+    mode: "all",
     reValidateMode: "onChange",
     resolver: yupResolver(schema),
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-    },
+    // defaultValues: {
+    //   firstName: undefined,
+    //   lastName: undefined,
+    //   phone: undefined,
+    // },
   });
 
   const onSubmit = (data: IFormInputs) => {
     console.log(data);
   };
+
+  console.log(dirtyFields);
+
+  console.log("dirty", dirtyFields.firstName);
+  console.log("touch", touchedFields.firstName);
+  console.log(getValues("firstName"));
 
   return (
     <>
@@ -47,10 +58,15 @@ const Login = () => {
           <label htmlFor="firstName">firstName</label>
           <input {...register("firstName")} />
           <p>
-            {errors.firstName?.type === "required" && "First name is required"}
+            {!getValues("firstName") &&
+              touchedFields.firstName &&
+              dirtyFields.firstName &&
+              errors.firstName?.type === "required" &&
+              "First name is required"}
           </p>
           <p>
             {dirtyFields.firstName &&
+              touchedFields.firstName &&
               errors.firstName?.type === "length" &&
               "First name need length 5"}
           </p>
@@ -59,7 +75,12 @@ const Login = () => {
         <div className={css.row}>
           <label htmlFor="lastName">lastName</label>
           <input {...register("lastName")} />
-          <p>{errors.lastName && "Last name is required"}</p>
+          <p>
+            {dirtyFields.lastName &&
+              touchedFields.lastName &&
+              errors.lastName &&
+              "Last name is required"}
+          </p>
         </div>
 
         <div className={css.row}>
