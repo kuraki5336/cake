@@ -33,10 +33,9 @@ const useStyles = makeStyles({
     border: "#FFFFFF 1px solid",
   },
   flex: {
-    display:"flex",
+    display: "flex",
     justifyContent: "flex-end",
   },
-
 });
 
 const Layout = ({ children, title = "This is the default title" }: Props) => {
@@ -63,7 +62,7 @@ const Layout = ({ children, title = "This is the default title" }: Props) => {
     }
   };
 
-  const doLogin = () =>router.push("/login");
+  const doLogin = () => router.push("/login");
 
   return (
     <>
@@ -81,10 +80,14 @@ const Layout = ({ children, title = "This is the default title" }: Props) => {
               </IconButton>
             </Grid>
             <Grid item xs={4} className={classes.flex}>
-              <Button  className={classes.white} variant="outlined">
+              <Button className={classes.white} variant="outlined">
                 qqqn
               </Button>
-              <Button onClick={doLogin} className={classes.white} variant="outlined">
+              <Button
+                onClick={doLogin}
+                className={classes.white}
+                variant="outlined"
+              >
                 Login
               </Button>
             </Grid>

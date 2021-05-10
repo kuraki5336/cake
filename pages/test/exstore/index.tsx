@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../../../components/Layout";
+import Layout from "../../../.next/components/Layout";
 /** 使用pub */
 import { useSelector /** useDispatch */ } from "react-redux";
 import { $getlist } from "../../../core/service/cathay";

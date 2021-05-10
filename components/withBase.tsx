@@ -1,5 +1,5 @@
 import React from "react";
-import { $token } from "../core/service/cathay";
+import { $token } from "../../core/service/cathay";
 
 const Baseform = <T extends object>(Component: React.ComponentType<T>) => {
   return (props: T) => (

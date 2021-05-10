@@ -1,0 +1,14 @@
+.row {
+  flex-wrap: wrap;
+
+  label {
+    display: block;
+  }
+  input {
+    display: block;
+  }
+  p {
+    color: rgba(211, 40, 40, 0.808);
+    font-size: medium;
+  }
+}
