@@ -28,14 +28,14 @@ const Login = () => {
   const {
     register,
     getValues,
-    formState: { errors, touchedFields, dirtyFields },
+    formState: { isDirty, errors, touchedFields, dirtyFields },
     handleSubmit,
   } = useForm<IFormInputs>({
     mode: "all",
     reValidateMode: "onChange",
     resolver: yupResolver(schema),
     defaultValues: {
-      firstName: undefined,
+      firstName: "",
       lastName: "",
       phone: "",
     },
@@ -47,6 +47,7 @@ const Login = () => {
 
   console.log(1, dirtyFields?.firstName);
   console.log(2, getValues("firstName"));
+  console.log(isDirty);
 
   return (
     <>
@@ -55,7 +56,8 @@ const Login = () => {
           <label htmlFor="firstName">firstName</label>
           <input {...register("firstName")} />
           <p>
-            {!dirtyFields.firstName && getValues('firstName') &&
+            {!dirtyFields.firstName &&
+              getValues("firstName") &&
               errors.firstName?.type === "required" &&
               "First name is required"}
           </p>
